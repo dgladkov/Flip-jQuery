@@ -146,7 +146,7 @@ $.fn.flip = function(settings){
 			})(settings.direction),
 			bgColor: acceptHexColor(settings.color) || "#999",
 			color: acceptHexColor(settings.bgColor) || $this.css("background-color"),
-			content: $this.html(),
+			content: $this.contents(),
 			speed: settings.speed || 500,
             onBefore: settings.onBefore || function(){},
             onEnd: settings.onEnd || function(){},
@@ -302,7 +302,7 @@ $.fn.flip = function(settings){
 
         newContent = function(){
             var target = flipObj.target;
-            return target && target.jquery ? target.html() : target;
+            return target && target.jquery ? target.contents() : target;
         };
 
         $clone.queue(function(){
@@ -326,7 +326,10 @@ $.fn.flip = function(settings){
             $this.css({visibility: "visible"});
 
             var nC = newContent();
-            if(nC){$this.html(nC);}
+            
+            if(nC){
+            	$this.attach(nC);
+            }
             $clone.remove();
             flipObj.onEnd($clone,$this);
             $this.removeData('flipLock');
