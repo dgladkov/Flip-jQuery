@@ -328,7 +328,7 @@ $.fn.flip = function(settings){
             var nC = newContent();
             
             if(nC){
-            	$this.attach(nC);
+            	$this.append(nC);
             }
             $clone.remove();
             flipObj.onEnd($clone,$this);
